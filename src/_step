@@ -1,0 +1,39 @@
+// import { connectDB } from "@/lib/connectDB";
+// import { ObjectId } from "mongodb";
+// import { NextResponse } from "next/server";
+
+// export const DELETE = async (request, { params }) => {
+//     const { id, email } = params;
+
+//     try {
+//         const db = await connectDB();
+//         const saveCarCollection = db.collection('saved-cars');
+
+//         // Find and delete the document with both the matching id and email
+//         const result = await saveCarCollection.deleteOne({
+//             _id: new ObjectId(id),
+//             email: email,
+//         });
+
+//         if (result.deletedCount === 1) {
+//             return NextResponse.json({ message: 'Car deleted successfully' });
+//         } else {
+//             return NextResponse.json({ message: 'Car not found or email mismatch' }, { status: 404 });
+//         }
+//     } catch (error) {
+//         console.error('Error deleting car:', error);
+//         return NextResponse.json({ message: 'Error deleting car' }, { status: 500 });
+//     }
+// };
+
+// const handleDelete = async (id) => {
+//     try {
+//         const res = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/mycar/api/${session?.data?.user?.email}/${id}`);
+//         console.log('Delete response:', res.data);
+
+//         // Update the UI by removing the deleted item
+//         setData((prevData) => prevData.filter(car => car._id !== id));
+//     } catch (err) {
+//         console.error('Error deleting car:', err);
+//     }
+// };

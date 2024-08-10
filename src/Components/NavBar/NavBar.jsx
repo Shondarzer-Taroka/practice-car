@@ -1,10 +1,14 @@
 'use client'
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+    let session=useSession()
     let pathName = usePathname()
+    // console.log(session?.data);
+    
     return (
         <div>
             <Navbar fluid rounded>
@@ -17,18 +21,18 @@ const NavBar = () => {
                         arrowIcon={false}
                         inline
                         label={
-                            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                            <Avatar className="border" alt="User settings" img={session?.data?.user?.image} rounded />
                         }
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">Bonnie Green</span>
                             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
                         </Dropdown.Header>
-                        <Dropdown.Item>Dashboard</Dropdown.Item>
+                        <Dropdown.Item href="/dashboard">Dashboard</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
+                       {session.data?.user?.email &&  <Dropdown.Item onClick={()=> signOut()}>Sign out</Dropdown.Item> }
                     </Dropdown>
                     <Navbar.Toggle />
                 </div>

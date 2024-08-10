@@ -1,22 +1,34 @@
 "use client";
 import React from 'react';
 import { Button,Label, TextInput } from "flowbite-react";
+import axios from 'axios';
+
 
 const page = () => {
 
-    function handleSubmit(e) {
+   async function handleSubmit(e) {
         e.preventDefault()
-        let form=e.target 
-
+        let form=e.target
         let newUser={
             name:form.name.value,
             email:form.email.value,
             password:form.password.value,
-            image:form.image
+            image:form.image.value
         }
-        console.log(newUser);
+
+    let res=await fetch('http://localhost:3000/signup/api',{
+        method:'POST',
+        body:JSON.stringify(newUser),
+        headers:{
+            'content-type':'application/json'
+        }
+    })
+
+    console.log(res);
         
     }
+
+    
     return (
         <div className='w-full'>
             <form className="flex max-w-md mx-auto mt-9 flex-col gap-4" onSubmit={handleSubmit}>

@@ -1,8 +1,6 @@
 "use client";
 import React from 'react';
 import { Button,Label, TextInput } from "flowbite-react";
-import axios from 'axios';
-
 
 const page = () => {
 
@@ -23,9 +21,7 @@ const page = () => {
             'content-type':'application/json'
         }
     })
-
     console.log(res);
-        
     }
 
     
